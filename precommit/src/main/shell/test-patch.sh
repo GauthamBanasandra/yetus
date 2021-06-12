@@ -1219,7 +1219,7 @@ function git_checkout
     # git ref hasn't been brought in tree yet
     if [[ ${GIT_OFFLINE} == false ]]; then
       if ! "${GIT}" pull --rebase --tags --force; then
-          yetus_error "ERROR: git pull is failing"
+          yetus_error "ERROR: git pull is failing because $?"
           cleanup_and_exit 1
       fi
     fi
