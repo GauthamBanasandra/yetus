@@ -1218,7 +1218,7 @@ function git_checkout
     # we need to explicitly fetch in case the
     # git ref hasn't been brought in tree yet
     if [[ ${GIT_OFFLINE} == false ]]; then
-      gitPullOutput=$("${GIT}" pull --rebase --tags --force 2>&1)
+      gitPullOutput=$("${GIT}" fetch --tags 2>&1)
       gitPullResult=$?
       echo "gitPullResult is ${gitPullResult}"
       echo "gitPullOutput is ${gitPullOutput}"
