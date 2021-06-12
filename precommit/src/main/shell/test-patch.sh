@@ -1218,8 +1218,12 @@ function git_checkout
     # we need to explicitly fetch in case the
     # git ref hasn't been brought in tree yet
     if [[ ${GIT_OFFLINE} == false ]]; then
-      if ! "${GIT}" pull --rebase --tags --force; then
-          yetus_error "ERROR: git pull is failing because $?"
+      gitPullOutput=$("${GIT}" pull --rebase --tags --force 2>&1)
+      gitPullResult=$?
+      echo "gitPullResult is ${gitPullResult}"
+      echo "gitPullOutput is ${gitPullOutput}"
+      if [[ $gitPullResult -ne 0 ]]; then
+          yetus_error "ERROR: git pull is failing because ${gitPullResult}"
           cleanup_and_exit 1
       fi
     fi
