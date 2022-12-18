@@ -749,6 +749,8 @@ function docker_run_image
     dockerbuild+=(-f "${buildfile}")
     dockerbuild+=("${dockerdir}")
 
+    yetus_debug "$(cat "${buildfile}")"
+
     if [[ "${DOCKER_BUILD_OUTPUT}" == 'true' ]]; then
       echo "Starting docker build..."
       dockercmd "${dockerbuild[@]}"
